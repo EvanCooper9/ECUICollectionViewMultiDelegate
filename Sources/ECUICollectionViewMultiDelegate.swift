@@ -1,6 +1,6 @@
 import UIKit
 
-final class ECUICollectionViewMultiDelegate: NSObject {
+public final class ECUICollectionViewMultiDelegate: NSObject {
     
     // MARK: - Public Properties
     
@@ -96,7 +96,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         delegates.forEach { $0.collectionView?(collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: elementKind, at: indexPath) }
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+    public func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
         let defaultValue = false
         let selector = #selector(collectionView(_:shouldShowMenuForItemAt:))
         return filteredDelegates(for: selector)
@@ -106,7 +106,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
             }
     }
     
-    func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+    public func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         let defaultValue = false
         let selector = #selector(collectionView(_:canPerformAction:forItemAt:withSender:))
         return filteredDelegates(for: selector)
@@ -116,16 +116,16 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
             }
     }
     
-    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    public func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
         delegates.forEach { $0.collectionView?(collectionView, performAction: action, forItemAt: indexPath, withSender: sender) }
     }
     
-    func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
+    public func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
         delegates.first?.collectionView?(collectionView, targetIndexPathForMoveFromItemAt: originalIndexPath, toProposedIndexPath: proposedIndexPath) ?? .init()
     }
     
     @available(iOS 14.0, *)
-    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+    public func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
         // TODO: figure out default value
         let defaultValue = false
         let selector = #selector(collectionView(_:canEditItemAt:))
@@ -137,7 +137,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
     }
     
     @available(iOS 11.0, *)
-    func collectionView(_ collectionView: UICollectionView, shouldSpringLoadItemAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
+    public func collectionView(_ collectionView: UICollectionView, shouldSpringLoadItemAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
         let defaultValue = true
         let selector = #selector(collectionView(_:shouldSpringLoadItemAt:with:))
         return filteredDelegates(for: selector)
@@ -148,7 +148,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
     }
     
     @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+    public func collectionView(_ collectionView: UICollectionView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
         // TODO: figure out default value
         let defaultValue = false
         let selector = #selector(collectionView(_:shouldBeginMultipleSelectionInteractionAt:))
@@ -160,45 +160,45 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
     }
     
     @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         delegates.forEach { $0.collectionView?(collectionView, didBeginMultipleSelectionInteractionAt: indexPath) }
     }
     
     @available(iOS 13.0, *)
-    func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView) {
+    public func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView) {
         delegates.forEach { $0.collectionViewDidEndMultipleSelectionInteraction?(collectionView) }
     }
     
     @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    public func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         // TODO: figure out default value
         nil
     }
     
     @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    public func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         // TODO: figure out default value
         nil
     }
     
     @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    public func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         // TODO: figure out default value
         nil
     }
     
     @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+    public func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         delegates.forEach { $0.collectionView?(collectionView, willPerformPreviewActionForMenuWith: configuration, animator: animator) }
     }
     
     @available(iOS 13.2, *)
-    func collectionView(_ collectionView: UICollectionView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+    public func collectionView(_ collectionView: UICollectionView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         delegates.forEach { $0.collectionView?(collectionView, willDisplayContextMenu: configuration, animator: animator) }
     }
     
     @available(iOS 13.2, *)
-    func collectionView(_ collectionView: UICollectionView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+    public func collectionView(_ collectionView: UICollectionView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         delegates.forEach { $0.collectionView?(collectionView, willEndContextMenuInteraction: configuration, animator: animator) }
     }
 }
@@ -215,7 +215,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
             }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
         let selector = #selector(collectionView(_:layout:insetForSectionAt:))
         return layoutDelegates(for: selector)
@@ -235,7 +235,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
             }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? .zero
         let selector = #selector(collectionView(_:layout:minimumInteritemSpacingForSectionAt:))
         return layoutDelegates(for: selector)
@@ -245,7 +245,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
             }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize ?? .zero
         let selector = #selector(collectionView(_:layout:referenceSizeForHeaderInSection:))
         return layoutDelegates(for: selector)
@@ -255,7 +255,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
             }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize ?? .zero
         let selector = #selector(collectionView(_:layout:referenceSizeForFooterInSection:))
         return layoutDelegates(for: selector)
@@ -268,39 +268,39 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
 
 extension ECUICollectionViewMultiDelegate: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewDidScroll?(scrollView) }
     }
     
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewDidZoom?(scrollView) }
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewWillBeginDragging?(scrollView) }
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         delegates.forEach { $0.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset) }
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         delegates.forEach { $0.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate) }
     }
     
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewWillBeginDecelerating?(scrollView) }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewDidEndDecelerating?(scrollView) }
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewDidEndScrollingAnimation?(scrollView) }
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         let defaultValue: UIView? = nil
         let selector = #selector(viewForZooming(in:))
         return filteredDelegates(for: selector)
@@ -310,15 +310,15 @@ extension ECUICollectionViewMultiDelegate: UIScrollViewDelegate {
             }
     }
     
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         delegates.forEach { $0.scrollViewWillBeginZooming?(scrollView, with: view) }
     }
     
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         delegates.forEach { $0.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale) }
     }
     
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+    public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         let defaultValue = false
         let selector = #selector(scrollViewShouldScrollToTop(_:))
         return filteredDelegates(for: selector)
@@ -328,12 +328,12 @@ extension ECUICollectionViewMultiDelegate: UIScrollViewDelegate {
             }
     }
     
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+    public func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewDidScrollToTop?(scrollView) }
     }
     
     @available(iOS 11.0, *)
-    func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
         delegates.forEach { $0.scrollViewDidChangeAdjustedContentInset?(scrollView) }
     }
 }
