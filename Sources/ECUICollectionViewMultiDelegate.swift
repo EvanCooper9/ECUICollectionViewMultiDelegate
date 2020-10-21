@@ -40,7 +40,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, shouldHighlightItemAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -58,7 +58,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, shouldSelectItemAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -68,7 +68,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, shouldSelectItemAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -102,7 +102,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, shouldShowMenuForItemAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -112,7 +112,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -132,7 +132,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, canEditItemAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -143,7 +143,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, shouldSpringLoadItemAt: indexPath, with: context) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -155,7 +155,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, shouldBeginMultipleSelectionInteractionAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -211,7 +211,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
         return layoutDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -221,7 +221,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
         return layoutDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, layout: collectionViewLayout, insetForSectionAt: section) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -231,7 +231,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
         return layoutDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, layout: collectionViewLayout, minimumLineSpacingForSectionAt: section) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
 
@@ -241,7 +241,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
         return layoutDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: section) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -251,7 +251,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
         return layoutDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, layout: collectionViewLayout, referenceSizeForHeaderInSection: section) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -261,7 +261,7 @@ extension ECUICollectionViewMultiDelegate: UICollectionViewDelegateFlowLayout {
         return layoutDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.collectionView?(collectionView, layout: collectionViewLayout, referenceSizeForFooterInSection: section) ?? defaultValue
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
 }
@@ -306,7 +306,7 @@ extension ECUICollectionViewMultiDelegate: UIScrollViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.viewForZooming?(in: scrollView)
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
@@ -324,7 +324,7 @@ extension ECUICollectionViewMultiDelegate: UIScrollViewDelegate {
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
                 let new = $1.scrollViewShouldScrollToTop?(scrollView)
-                return reductionDelegate?.reduce($0, new, selector: selector) ?? defaultValue
+                return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
     
