@@ -323,7 +323,7 @@ extension ECUICollectionViewMultiDelegate: UIScrollViewDelegate {
         let selector = #selector(scrollViewShouldScrollToTop(_:))
         return filteredDelegates(for: selector)
             .reduce(defaultValue) {
-                let new = $1.scrollViewShouldScrollToTop?(scrollView)
+                let new = $1.scrollViewShouldScrollToTop?(scrollView) ?? defaultValue
                 return reductionDelegate?.reduce($0, new, selector: selector) ?? new
             }
     }
